@@ -5,14 +5,14 @@ DIR := $(shell pwd)
 CSRCS := $(shell find . -name "*.c")
 
 # 定义编译标志
-CFLAGS := -g -O2 -Wall -Werrorm
+CFLAGS := -g -O2 -Wall -Werror -fsanitize=address -fsanitize=undefined
 CFLAGS += -I./include
 
 # 生成目录
 BUILD_DIR := build
 
 # 最终生成的可执行文件名称
-TARGET := main
+TARGET := interpreter
 
 # 将 .c 文件转换为对应的 .o 文件
 OBJS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(notdir $(CSRCS)))
