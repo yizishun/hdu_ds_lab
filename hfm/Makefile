@@ -17,7 +17,7 @@ BUILD_DIR := build
 TARGET := interpreter
 
 # 将 .c 文件转换为对应的 .o 文件
-OBJS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(notdir $(CSRCS)))
+OBJS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(CSRCS))
 
 # 编译器
 CC := gcc
@@ -27,7 +27,7 @@ all: $(BUILD_DIR) $(TARGET)
 
 # 生成目标文件
 $(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # 链接目标文件生成可执行文件

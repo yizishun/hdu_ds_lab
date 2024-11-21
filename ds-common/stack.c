@@ -1,4 +1,6 @@
-#include <common.h>
+#include "./include/common.h"
+#include "./include/utils.h"
+#include "./include/stack.h"
 bool is_empty(Stack *s){ return s->top == -1; }
 static inline bool is_full(Stack *s){ return s->top == s->size - 1; }
 

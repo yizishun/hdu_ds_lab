@@ -1,4 +1,4 @@
-#include <common.h>
+#include <demon.h>
 int len = 100;
 char *get_demon_lang(){
     char *lang = malloc(sizeof(char) * 100);

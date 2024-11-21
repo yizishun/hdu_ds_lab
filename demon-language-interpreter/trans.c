@@ -1,4 +1,4 @@
-#include <common.h>
+#include <demon.h>
 
 char *reverseString(const char *str);
 char *append_c(char c, Stack *s);
@@ -9,7 +9,7 @@ char *translate(char *input, int size)
     Stack *result_stack = init_stack(size * 100, "result stack");
     Stack *attach = init_stack(size * 100, "attach stack");
     push_s(input_stack, reverseString(input));
-    return translate_internal(input_stack, result_stack, attach, false);
+    return translate_internal(input_stack, result_stack, attach);
 }
 
 char *translate_internal(Stack *input_stack, Stack *result_stack, Stack *attach)
@@ -46,7 +46,6 @@ char *translate_internal(Stack *input_stack, Stack *result_stack, Stack *attach)
             break;
         case ')':
             push_c(result_stack, pop(attach));
-            if(rec){return }
             break;
         default:
             push_s(result_stack, append_c(c, attach));
