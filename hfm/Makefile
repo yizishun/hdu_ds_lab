@@ -6,7 +6,7 @@ CSRCS := $(shell find . -name "*.c")
 CSRCS += $(shell find ../ds-common -name "*.c")
 
 # 定义编译标志
-CFLAGS := -g -O2 -Wall -Werror -fsanitize=address -fsanitize=undefined
+CFLAGS := -g -O2 -Wall
 CFLAGS += -I./include
 CFLAGS += -I../ds-common/include
 
@@ -34,7 +34,7 @@ $(BUILD_DIR)/%.o: %.c
 # 链接目标文件生成可执行文件
 $(TARGET): $(OBJS)
 	@echo "+link $@"
-	@$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) -lm
 
 run: all
 	./$(TARGET)

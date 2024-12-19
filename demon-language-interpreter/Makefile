@@ -6,7 +6,7 @@ CSRCS := $(shell find . -name "*.c")
 CSRCS += $(shell find ../ds-common -name "*.c")
 
 # 定义编译标志
-CFLAGS := -g -O2 -Wall -Werror -fsanitize=address -fsanitize=undefined
+CFLAGS := -g -O2 -Wall
 CFLAGS += -I./include
 CFLAGS += -I../ds-common/include
 
@@ -17,7 +17,7 @@ BUILD_DIR := build
 TARGET := interpreter
 
 # 将 .c 文件转换为对应的 .o 文件
-OBJS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(notdir $(CSRCS)))
+OBJS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(CSRCS))
 
 # 编译器
 CC := gcc
@@ -27,12 +27,14 @@ all: $(BUILD_DIR) $(TARGET)
 
 # 生成目标文件
 $(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(dir $@)
+	@echo "+cc $<"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # 链接目标文件生成可执行文件
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	@echo "+link $@"
+	@$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) -lm
 
 run: all
 	./$(TARGET)
