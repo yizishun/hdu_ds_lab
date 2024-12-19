@@ -5,4 +5,5 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <getopt.h>
 #endif

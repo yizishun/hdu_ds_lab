@@ -14,7 +14,7 @@ CFLAGS += -I../ds-common/include
 BUILD_DIR := build
 
 # 最终生成的可执行文件名称
-TARGET := hfm-interpreter
+TARGET := campus-tour
 
 # 将 .c 文件转换为对应的 .o 文件
 OBJS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(CSRCS))
